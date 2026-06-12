@@ -1,98 +1,74 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-black text-gray-100">
+<html lang="en" class="bg-black text-white">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Abutre | Heavy Metal Portugal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Inter:wght@400;700&display=swap');
+        .font-metal { font-family: 'Metal+Mania', cursive; }
+        .hero-gradient { background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%); }
+    </style>
 </head>
-<body class="font-sans">
+<body class="font-sans antialiased">
 
-    <!-- Hero / Header -->
-    <header class="py-20 text-center border-b border-gray-800">
-        <h1 class="text-6xl font-bold tracking-tighter uppercase italic">Abutre</h1>
-        <p class="text-gray-400 mt-4 tracking-widest uppercase text-sm">Traditional Heavy Metal from Portugal</p>
-    </header>
-
-    <!-- Members Section -->
-    <section id="band" class="max-w-5xl mx-auto py-16 px-6">
-        <h2 class="text-3xl font-bold mb-10 border-l-4 border-red-700 pl-4 uppercase">Members</h2>
-        <div id="members-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Data injected by script -->
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-end justify-center pb-20">
+        <!-- Replace with your actual band photo URL -->
+        <div class="absolute inset-0 bg-gray-900 bg-cover bg-center" style="background-image: url('your-band-hero-photo.jpg');"></div>
+        <div class="absolute inset-0 hero-gradient"></div>
+        
+        <div class="relative z-10 text-center">
+            <h1 class="text-8xl md:text-9xl font-metal uppercase tracking-widest text-red-600 drop-shadow-2xl">Abutre</h1>
+            <p class="text-xl tracking-[0.5em] uppercase text-white mt-4">Traditional Heavy Metal</p>
         </div>
     </section>
 
-    <!-- Discography Section -->
-    <section id="music" class="bg-zinc-950 py-16 px-6">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl font-bold mb-10 border-l-4 border-red-700 pl-4 uppercase">Discography</h2>
-            <div class="flex flex-col md:flex-row gap-8 items-start">
-                <div class="w-48 h-48 bg-gray-800 flex-shrink-0 flex items-center justify-center border border-gray-700">
-                    <span class="text-xs text-gray-500">Album Art</span>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-bold">Terra Cruel (2026)</h3>
-                    <ul class="text-gray-400 mt-4 space-y-1 font-mono text-sm">
-                        <li>01. Terra Cruel</li>
-                        <li>02. Eterno Combate</li>
-                        <li>03. Toda a luz o tempo apaga</li>
-                        <li>04. Caverna do Dragão</li>
-                    </ul>
+    <!-- Main Content Grid (Maiden Style) -->
+    <main class="max-w-6xl mx-auto px-6 -mt-20 relative z-20">
+        <div class="grid md:grid-cols-3 gap-6">
+            
+            <!-- News/Tour Card -->
+            <div class="md:col-span-2 bg-gray-900 border border-gray-700 p-8 hover:border-red-600 transition-all">
+                <h2 class="text-3xl font-bold uppercase mb-6 border-b border-gray-700 pb-2">Upcoming Rituals</h2>
+                <div id="tour-list" class="text-gray-400">
+                    <p>No upcoming dates scheduled.</p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Concerts Section -->
-    <section id="tour" class="max-w-5xl mx-auto py-16 px-6">
-        <h2 class="text-3xl font-bold mb-10 border-l-4 border-red-700 pl-4 uppercase">Upcoming Rituals</h2>
-        <div class="overflow-x-auto">
-            <table class="w-full text-left">
-                <thead>
-                    <tr class="text-gray-500 text-sm uppercase">
-                        <th class="py-4">Date</th>
-                        <th class="py-4">Venue</th>
-                        <th class="py-4">Location</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-800">
-                    <tr>
-                        <td class="py-4 font-mono">TBA</td>
-                        <td class="py-4 font-bold">Check back soon</td>
-                        <td class="py-4 text-gray-400">Portugal</td>
-                    </tr>
-                </tbody>
-            </table>
+            <!-- Discography/CTA Card -->
+            <div class="bg-red-900 p-8 text-white flex flex-col justify-center items-center text-center">
+                <h3 class="text-2xl font-bold uppercase mb-4">Latest Release</h3>
+                <div class="w-32 h-32 bg-black mb-4 border-2 border-white"></div>
+                <a href="#" class="bg-black px-6 py-2 uppercase tracking-widest font-bold hover:bg-white hover:text-black transition-all">Listen Now</a>
+            </div>
         </div>
-    </section>
 
-    <!-- Scripts -->
+        <!-- Members Section -->
+        <section class="py-20">
+            <h2 class="text-4xl font-bold uppercase mb-12 text-center">The Lineup</h2>
+            <div id="members-grid" class="grid grid-cols-2 md:grid-cols-5 gap-6">
+                <!-- JS will inject cards here -->
+            </div>
+        </section>
+    </main>
+
     <script>
-        // Fetch members from the /data directory
+        // Fetch members
         fetch('data/members.json')
-            .then(response => {
-                if (!response.ok) throw new Error('Could not load members.json');
-                return response.json();
-            })
+            .then(res => res.json())
             .then(data => {
                 const grid = document.getElementById('members-grid');
-                grid.innerHTML = '';
-                data.forEach(member => {
-                    const card = `
-                        <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 text-center hover:border-red-900 transition-colors">
-                            <div class="w-20 h-20 bg-gray-800 rounded-full mb-4 mx-auto border border-gray-700"></div>
-                            <h3 class="text-lg font-bold">${member.name}</h3>
-                            <p class="text-red-500 text-xs font-bold uppercase tracking-widest mt-1">${member.role}</p>
+                data.forEach(m => {
+                    grid.innerHTML += `
+                        <div class="group cursor-pointer">
+                            <div class="w-full h-64 bg-gray-800 grayscale group-hover:grayscale-0 transition-all border-b-4 border-red-600"></div>
+                            <h3 class="mt-4 text-sm font-bold uppercase">${m.name}</h3>
+                            <p class="text-xs text-red-500">${m.role}</p>
                         </div>
                     `;
-                    grid.innerHTML += card;
                 });
-            })
-            .catch(err => {
-                console.error('Error:', err);
-                document.getElementById('members-grid').innerHTML = '<p class="text-gray-500">Error loading band members.</p>';
             });
     </script>
-
 </body>
 </html>
