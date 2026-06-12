@@ -7,7 +7,7 @@
 </section>
 
 <script>
-    fetch('members.json')
+    fetch('data/members.json')
         .then(response => response.json())
         .then(data => {
             const grid = document.getElementById('members-grid');
