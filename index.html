@@ -1,25 +1,98 @@
-<!-- Members Section -->
-<section id="band" class="max-w-5xl mx-auto py-16 px-6">
-    <h2 class="text-3xl font-bold mb-10 border-l-4 border-red-700 pl-4">Members</h2>
-    <div id="members-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- JS will inject cards here -->
-    </div>
-</section>
+<!DOCTYPE html>
+<html lang="en" class="bg-black text-gray-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Abutre | Heavy Metal Portugal</title>
+</head>
+<body class="font-sans">
 
-<script>
-    fetch('data/members.json')
-        .then(response => response.json())
-        .then(data => {
-            const grid = document.getElementById('members-grid');
-            data.forEach(member => {
-                const card = `
-                    <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 text-center">
-                        <div class="w-24 h-24 bg-gray-700 rounded-full mb-4 mx-auto"></div>
-                        <h3 class="text-xl font-bold">${member.name}</h3>
-                        <p class="text-red-500 text-sm uppercase">${member.role}</p>
-                    </div>
-                `;
-                grid.innerHTML += card;
+    <!-- Hero / Header -->
+    <header class="py-20 text-center border-b border-gray-800">
+        <h1 class="text-6xl font-bold tracking-tighter uppercase italic">Abutre</h1>
+        <p class="text-gray-400 mt-4 tracking-widest uppercase text-sm">Traditional Heavy Metal from Portugal</p>
+    </header>
+
+    <!-- Members Section -->
+    <section id="band" class="max-w-5xl mx-auto py-16 px-6">
+        <h2 class="text-3xl font-bold mb-10 border-l-4 border-red-700 pl-4 uppercase">Members</h2>
+        <div id="members-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Data injected by script -->
+        </div>
+    </section>
+
+    <!-- Discography Section -->
+    <section id="music" class="bg-zinc-950 py-16 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold mb-10 border-l-4 border-red-700 pl-4 uppercase">Discography</h2>
+            <div class="flex flex-col md:flex-row gap-8 items-start">
+                <div class="w-48 h-48 bg-gray-800 flex-shrink-0 flex items-center justify-center border border-gray-700">
+                    <span class="text-xs text-gray-500">Album Art</span>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold">Terra Cruel (2026)</h3>
+                    <ul class="text-gray-400 mt-4 space-y-1 font-mono text-sm">
+                        <li>01. Terra Cruel</li>
+                        <li>02. Eterno Combate</li>
+                        <li>03. Toda a luz o tempo apaga</li>
+                        <li>04. Caverna do Dragão</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Concerts Section -->
+    <section id="tour" class="max-w-5xl mx-auto py-16 px-6">
+        <h2 class="text-3xl font-bold mb-10 border-l-4 border-red-700 pl-4 uppercase">Upcoming Rituals</h2>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="text-gray-500 text-sm uppercase">
+                        <th class="py-4">Date</th>
+                        <th class="py-4">Venue</th>
+                        <th class="py-4">Location</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-800">
+                    <tr>
+                        <td class="py-4 font-mono">TBA</td>
+                        <td class="py-4 font-bold">Check back soon</td>
+                        <td class="py-4 text-gray-400">Portugal</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script>
+        // Fetch members from the /data directory
+        fetch('data/members.json')
+            .then(response => {
+                if (!response.ok) throw new Error('Could not load members.json');
+                return response.json();
+            })
+            .then(data => {
+                const grid = document.getElementById('members-grid');
+                grid.innerHTML = '';
+                data.forEach(member => {
+                    const card = `
+                        <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 text-center hover:border-red-900 transition-colors">
+                            <div class="w-20 h-20 bg-gray-800 rounded-full mb-4 mx-auto border border-gray-700"></div>
+                            <h3 class="text-lg font-bold">${member.name}</h3>
+                            <p class="text-red-500 text-xs font-bold uppercase tracking-widest mt-1">${member.role}</p>
+                        </div>
+                    `;
+                    grid.innerHTML += card;
+                });
+            })
+            .catch(err => {
+                console.error('Error:', err);
+                document.getElementById('members-grid').innerHTML = '<p class="text-gray-500">Error loading band members.</p>';
             });
-        });
-</script>
+    </script>
+
+</body>
+</html>
