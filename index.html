@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Inter:wght@400;700&display=swap');
-        .font-metal { font-family: 'Metal+Mania', cursive; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
         .hero-gradient { background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%); }
     </style>
 </head>
@@ -14,13 +13,14 @@
 
     <!-- Hero Section -->
     <section class="relative h-screen flex items-end justify-center pb-20">
-        <!-- Background image reference: watermarked_img_11333036901051153970.png -->
-        <div class="absolute inset-0 bg-gray-900 bg-cover bg-center" style="background-image: url('/images/watermarked_img_11333036901051153970.png');"></div>
+        <!-- Background image: watermarked_img_11333036901051153970.png -->
+        <div class="absolute inset-0 bg-gray-900 bg-cover bg-center" style="background-image: url('images/watermarked_img_11333036901051153970.png');"></div>
         <div class="absolute inset-0 hero-gradient"></div>
         
-        <div class="relative z-10 text-center">
-            <h1 class="text-8xl md:text-9xl font-metal uppercase tracking-widest text-red-600 drop-shadow-2xl">Abutre</h1>
-            <p class="text-xl tracking-[0.5em] uppercase text-white mt-4">Traditional Heavy Metal</p>
+        <div class="relative z-10 text-center px-4">
+            <!-- Band Logo: image.png -->
+            <img src="images/image.png" alt="Abutre Logo" class="max-w-md md:max-w-xl mx-auto drop-shadow-2xl">
+            <p class="text-xl tracking-[0.5em] uppercase text-white mt-8">Traditional Heavy Metal</p>
         </div>
     </section>
 
@@ -39,7 +39,7 @@
             <!-- Latest Release -->
             <div class="bg-red-900 p-8 text-white flex flex-col justify-center items-center text-center">
                 <h3 class="text-2xl font-bold uppercase mb-4">Latest Release</h3>
-                <div class="w-32 h-32 bg-black mb-4 border-2 border-white flex items-center justify-center text-xs">Terra Cruel</div>
+                <div class="w-32 h-32 bg-black mb-4 border-2 border-white flex items-center justify-center text-xs text-center">Terra Cruel</div>
                 <a href="#" class="bg-black px-6 py-2 uppercase tracking-widest font-bold hover:bg-white hover:text-black transition-all">Listen Now</a>
             </div>
         </div>
@@ -48,17 +48,19 @@
         <section class="py-20">
             <h2 class="text-4xl font-bold uppercase mb-12 text-center">The Lineup</h2>
             <div id="members-grid" class="grid grid-cols-2 md:grid-cols-5 gap-6">
-                <!-- JS will inject cards here -->
+                <!-- Data injected by script -->
             </div>
         </section>
     </main>
 
+    <!-- Scripts -->
     <script>
-        // Fetch members from the /data directory
+        // Fetch members from /data/members.json
         fetch('data/members.json')
             .then(res => res.json())
             .then(data => {
                 const grid = document.getElementById('members-grid');
+                grid.innerHTML = '';
                 data.forEach(m => {
                     grid.innerHTML += `
                         <div class="group cursor-pointer">
