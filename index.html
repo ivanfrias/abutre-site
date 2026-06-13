@@ -52,21 +52,29 @@
         <!-- Latest Clips Section -->
         <section class="py-20">
             <h2 id="clips-title" class="text-4xl font-bold uppercase mb-12 text-center">Últimos Videoclipes</h2>
-            <div class="grid md:grid-cols-2 gap-8">
+            
+            <div class="max-w-4xl mx-auto space-y-16">
                 <!-- Clip 1 -->
-                <a href="https://youtu.be/EnX9IIWFbus" target="_blank" class="block aspect-video bg-gray-800 hover:opacity-80 transition-opacity border-2 border-transparent hover:border-red-600 relative">
-                    <img src="https://i.ytimg.com/vi/EnX9IIWFbus/sddefault.jpg" alt="Abutre - Eterno Combate" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <span id="watch-btn" class="bg-black/70 px-4 py-2 uppercase font-bold text-sm">Assistir no YouTube</span>
-                    </div>
-                </a>
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold uppercase mb-4">Abutre - Eterno Combate</h3>
+                    <a href="https://youtu.be/EnX9IIWFbus" target="_blank" class="block w-full aspect-video bg-gray-800 hover:opacity-80 transition-opacity border-2 border-transparent hover:border-red-600 relative">
+                        <img src="https://i.ytimg.com/vi/EnX9IIWFbus/sddefault.jpg" alt="Abutre - Eterno Combate" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="watch-btn bg-black/70 px-6 py-3 uppercase font-bold text-lg">Assistir no YouTube</span>
+                        </div>
+                    </a>
+                </div>
+
                 <!-- Clip 2 -->
-                <a href="https://youtu.be/D8tyopJ6U1U" target="_blank" class="block aspect-video bg-gray-800 hover:opacity-80 transition-opacity border-2 border-transparent hover:border-red-600 relative">
-                    <img src="https://i.ytimg.com/vi/D8tyopJ6U1U/sddefault.jpg" alt="Abutre - Toda a Luz o Tempo Apaga" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <span class="bg-black/70 px-4 py-2 uppercase font-bold text-sm">Assistir no YouTube</span>
-                    </div>
-                </a>
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold uppercase mb-4">Abutre - Toda a Luz o Tempo Apaga</h3>
+                    <a href="https://youtu.be/D8tyopJ6U1U" target="_blank" class="block w-full aspect-video bg-gray-800 hover:opacity-80 transition-opacity border-2 border-transparent hover:border-red-600 relative">
+                        <img src="https://i.ytimg.com/vi/D8tyopJ6U1U/sddefault.jpg" alt="Abutre - Toda a Luz o Tempo Apaga" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="watch-btn bg-black/70 px-6 py-3 uppercase font-bold text-lg">Assistir no YouTube</span>
+                        </div>
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -100,7 +108,7 @@
             document.getElementById('clips-title').innerText = translations[lang].clips;
             document.getElementById('lineup-title').innerText = translations[lang].lineup;
             document.getElementById('no-dates').innerText = translations[lang].noDates;
-            document.querySelectorAll('#watch-btn').forEach(el => el.innerText = translations[lang].watch);
+            document.querySelectorAll('.watch-btn').forEach(el => el.innerText = translations[lang].watch);
         }
 
         fetch('data/members.json')
