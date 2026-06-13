@@ -28,7 +28,7 @@
         <div class="absolute inset-0 hero-gradient"></div>
         <div class="relative z-10 text-center px-4">
             <img src="images/Logo_Abutre_Vetores-03.png" alt="Abutre Logo" class="max-w-md md:max-w-xl mx-auto drop-shadow-2xl animate-stretch">
-            <p id="hero-subtitle" class="text-xl tracking-[0.5em] uppercase text-white mt-8">Traditional Heavy Metal</p>
+            <p id="hero-subtitle" class="text-xl tracking-[0.5em] uppercase text-white mt-8">Heavy Metal Tradicional</p>
         </div>
     </section>
 
@@ -42,7 +42,6 @@
 
             <div class="bg-red-900 p-8 text-white flex flex-col justify-center items-center text-center">
                 <h3 id="release-title" class="text-2xl font-bold uppercase mb-4">Último Lançamento</h3>
-                <!-- Fixed Image Reference -->
                 <img src="images/IMG_0036.jpeg" alt="Demo MMXXV" class="w-32 h-32 mb-4 border-2 border-white shadow-lg">
                 <a id="listen-btn" href="https://abutremetal.bandcamp.com/album/demo-mmxxv" target="_blank" class="bg-black px-6 py-2 uppercase tracking-widest font-bold hover:bg-white hover:text-black transition-all">Ouvir Agora</a>
             </div>
@@ -53,6 +52,15 @@
             <div id="members-grid" class="grid grid-cols-2 md:grid-cols-5 gap-6"></div>
         </section>
     </main>
+
+    <!-- Social Links Footer -->
+    <footer class="py-12 border-t border-gray-800 text-center">
+        <div class="flex justify-center gap-8 text-xl uppercase tracking-widest">
+            <a href="https://www.facebook.com/profile.php?id=61581720787540" target="_blank" class="hover:text-red-600 transition-colors">Facebook</a>
+            <a href="https://www.instagram.com/abutremetal/" target="_blank" class="hover:text-red-600 transition-colors">Instagram</a>
+            <a href="https://www.youtube.com/@AbutreMetalBand" target="_blank" class="hover:text-red-600 transition-colors">YouTube</a>
+        </div>
+    </footer>
 
     <script>
         const translations = {
@@ -69,7 +77,6 @@
             document.getElementById('no-dates').innerText = translations[lang].noDates;
         }
 
-        // Fixed Lineup Fetch
         fetch('data/members.json')
             .then(res => res.json())
             .then(data => {
