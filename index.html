@@ -13,6 +13,10 @@
 </head>
 <body class="font-sans antialiased">
 
+    <!-- Facebook SDK -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_PT/sdk.js#xfbml=1&version=v20.0"></script>
+
     <!-- Language Toggle -->
     <div class="fixed top-4 right-4 z-50 flex gap-2">
         <button onclick="setLanguage('pt')" class="bg-gray-800 px-3 py-1 text-sm flex items-center gap-2 hover:bg-red-600 transition-all">🇵🇹 PT</button>
@@ -32,10 +36,18 @@
     <!-- Main Content -->
     <main class="max-w-6xl mx-auto px-6 -mt-20 relative z-20">
         <div class="grid md:grid-cols-3 gap-6">
-            <!-- Upcoming Rituals -->
+            <!-- News / Facebook Feed -->
             <div class="md:col-span-2 bg-gray-900 border border-gray-700 p-8 hover:border-red-600 transition-all">
-                <h2 id="ritual-title" class="text-3xl font-bold uppercase mb-6 border-b border-gray-700 pb-2">Próximos Rituais</h2>
-                <div id="tour-list" class="text-gray-400"><p id="no-dates">Nenhuma data agendada.</p></div>
+                <h2 id="news-title" class="text-3xl font-bold uppercase mb-6 border-b border-gray-700 pb-2">Notícias</h2>
+                <div class="fb-page" 
+                     data-href="https://www.facebook.com/profile.php?id=61581720787540" 
+                     data-tabs="timeline" 
+                     data-width="700" 
+                     data-small-header="true" 
+                     data-adapt-container-width="true" 
+                     data-hide-cover="false" 
+                     data-show-facepile="true">
+                </div>
             </div>
 
             <!-- Latest Release -->
@@ -53,19 +65,17 @@
         <section class="py-20">
             <h2 id="clips-title" class="text-4xl font-bold uppercase mb-12 text-center">Últimos Videoclipes</h2>
             <div class="max-w-4xl mx-auto space-y-16">
-                <!-- Clip 1 -->
                 <div class="text-center">
                     <h3 class="text-2xl font-bold uppercase mb-4">Abutre - Eterno Combate</h3>
                     <a href="https://youtu.be/EnX9IIWFbus" target="_blank" class="block w-full aspect-video bg-gray-800 hover:opacity-80 transition-opacity border-2 border-transparent hover:border-red-600 relative">
-                        <img src="https://i.ytimg.com/vi/EnX9IIWFbus/sddefault.jpg" alt="Abutre - Eterno Combate" class="w-full h-full object-cover">
+                        <img src="https://i.ytimg.com/vi/EnX9IIWFbus/sddefault.jpg" class="w-full h-full object-cover">
                         <div class="absolute inset-0 flex items-center justify-center"><span class="watch-btn bg-black/70 px-6 py-3 uppercase font-bold text-lg">Assistir no YouTube</span></div>
                     </a>
                 </div>
-                <!-- Clip 2 -->
                 <div class="text-center">
                     <h3 class="text-2xl font-bold uppercase mb-4">Abutre - Toda a Luz o Tempo Apaga</h3>
                     <a href="https://youtu.be/D8tyopJ6U1U" target="_blank" class="block w-full aspect-video bg-gray-800 hover:opacity-80 transition-opacity border-2 border-transparent hover:border-red-600 relative">
-                        <img src="https://i.ytimg.com/vi/D8tyopJ6U1U/sddefault.jpg" alt="Abutre - Toda a Luz o Tempo Apaga" class="w-full h-full object-cover">
+                        <img src="https://i.ytimg.com/vi/D8tyopJ6U1U/sddefault.jpg" class="w-full h-full object-cover">
                         <div class="absolute inset-0 flex items-center justify-center"><span class="watch-btn bg-black/70 px-6 py-3 uppercase font-bold text-lg">Assistir no YouTube</span></div>
                     </a>
                 </div>
@@ -97,18 +107,17 @@
 
     <script>
         const translations = {
-            pt: { hero: "Heavy Metal Tradicional", ritual: "Próximos Rituais", release: "Último Lançamento", listen: "Ouvir Agora", clips: "Últimos Videoclipes", watch: "Assistir no YouTube", lineup: "Formação", noDates: "Nenhuma data agendada." },
-            en: { hero: "Traditional Heavy Metal", ritual: "Upcoming Rituals", release: "Latest Release", listen: "Listen Now", clips: "Latest Video Clips", watch: "Watch on YouTube", lineup: "The Lineup", noDates: "No upcoming dates scheduled." }
+            pt: { hero: "Heavy Metal Tradicional", news: "Notícias", release: "Último Lançamento", listen: "Ouvir Agora", clips: "Últimos Videoclipes", watch: "Assistir no YouTube", lineup: "Formação" },
+            en: { hero: "Traditional Heavy Metal", news: "News", release: "Latest Release", listen: "Listen Now", clips: "Latest Video Clips", watch: "Watch on YouTube", lineup: "The Lineup" }
         };
 
         function setLanguage(lang) {
             document.getElementById('hero-subtitle').innerText = translations[lang].hero;
-            document.getElementById('ritual-title').innerText = translations[lang].ritual;
+            document.getElementById('news-title').innerText = translations[lang].news;
             document.getElementById('release-title').innerText = translations[lang].release;
             document.getElementById('listen-btn').childNodes[2].nodeValue = " " + translations[lang].listen;
             document.getElementById('clips-title').innerText = translations[lang].clips;
             document.getElementById('lineup-title').innerText = translations[lang].lineup;
-            document.getElementById('no-dates').innerText = translations[lang].noDates;
             document.querySelectorAll('.watch-btn').forEach(el => el.innerText = translations[lang].watch);
         }
 
