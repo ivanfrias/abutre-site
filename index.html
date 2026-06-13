@@ -35,19 +35,12 @@
 
     <!-- Main Content -->
     <main class="max-w-6xl mx-auto px-6 -mt-20 relative z-20">
-        <div class="grid md:grid-cols-3 gap-6">
-            <!-- News / Facebook Feed -->
+        <!-- Top Row -->
+        <div class="grid md:grid-cols-3 gap-6 mb-6">
+            <!-- Upcoming Rituals -->
             <div class="md:col-span-2 bg-gray-900 border border-gray-700 p-8 hover:border-red-600 transition-all">
-                <h2 id="news-title" class="text-3xl font-bold uppercase mb-6 border-b border-gray-700 pb-2">Notícias</h2>
-                <div class="fb-page" 
-                     data-href="https://www.facebook.com/profile.php?id=61581720787540" 
-                     data-tabs="timeline" 
-                     data-width="700" 
-                     data-small-header="true" 
-                     data-adapt-container-width="true" 
-                     data-hide-cover="false" 
-                     data-show-facepile="true">
-                </div>
+                <h2 id="ritual-title" class="text-3xl font-bold uppercase mb-6 border-b border-gray-700 pb-2">Próximos Rituais</h2>
+                <div id="tour-list" class="text-gray-400"><p id="no-dates">Nenhuma data agendada.</p></div>
             </div>
 
             <!-- Latest Release -->
@@ -58,6 +51,20 @@
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M0 18.75l7.375-13.5h16.625l-7.375 13.5h-16.625z"/></svg>
                     Ouvir Agora
                 </a>
+            </div>
+        </div>
+
+        <!-- News / Facebook Feed -->
+        <div class="bg-gray-900 border border-gray-700 p-8 mb-6 hover:border-red-600 transition-all">
+            <h2 id="news-title" class="text-3xl font-bold uppercase mb-6 border-b border-gray-700 pb-2">Notícias</h2>
+            <div class="fb-page" 
+                 data-href="https://www.facebook.com/profile.php?id=61581720787540" 
+                 data-tabs="timeline" 
+                 data-width="1100" 
+                 data-small-header="true" 
+                 data-adapt-container-width="true" 
+                 data-hide-cover="false" 
+                 data-show-facepile="true">
             </div>
         </div>
 
@@ -107,17 +114,19 @@
 
     <script>
         const translations = {
-            pt: { hero: "Heavy Metal Tradicional", news: "Notícias", release: "Último Lançamento", listen: "Ouvir Agora", clips: "Últimos Videoclipes", watch: "Assistir no YouTube", lineup: "Formação" },
-            en: { hero: "Traditional Heavy Metal", news: "News", release: "Latest Release", listen: "Listen Now", clips: "Latest Video Clips", watch: "Watch on YouTube", lineup: "The Lineup" }
+            pt: { hero: "Heavy Metal Tradicional", ritual: "Próximos Rituais", news: "Notícias", release: "Último Lançamento", listen: "Ouvir Agora", clips: "Últimos Videoclipes", watch: "Assistir no YouTube", lineup: "Formação", noDates: "Nenhuma data agendada." },
+            en: { hero: "Traditional Heavy Metal", ritual: "Upcoming Rituals", news: "News", release: "Latest Release", listen: "Listen Now", clips: "Latest Video Clips", watch: "Watch on YouTube", lineup: "The Lineup", noDates: "No upcoming dates scheduled." }
         };
 
         function setLanguage(lang) {
             document.getElementById('hero-subtitle').innerText = translations[lang].hero;
+            document.getElementById('ritual-title').innerText = translations[lang].ritual;
             document.getElementById('news-title').innerText = translations[lang].news;
             document.getElementById('release-title').innerText = translations[lang].release;
             document.getElementById('listen-btn').childNodes[2].nodeValue = " " + translations[lang].listen;
             document.getElementById('clips-title').innerText = translations[lang].clips;
             document.getElementById('lineup-title').innerText = translations[lang].lineup;
+            document.getElementById('no-dates').innerText = translations[lang].noDates;
             document.querySelectorAll('.watch-btn').forEach(el => el.innerText = translations[lang].watch);
         }
 
